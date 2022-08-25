@@ -1,5 +1,5 @@
 package com.offer1.Housing.entity;
 
-public enum HomeState {
+public enum ListingState {
 	ACTIVE, PENDING, PRESALE
 }

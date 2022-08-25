@@ -18,30 +18,15 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "address")
-public class Address {
+@Table(name = "primaryOwner")
+public class PrimaryOwner {
 
-	@OneToOne(mappedBy = "address")
+	@OneToOne(mappedBy = "primaryOwner")
     private Property property;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
-
-	@Column(name = "address_line_1")
-	private String addressLine1;
-
-	@Column(name = "address_line_2")
-	private String addressLine2;
-
-	@Column(name = "city")
-	private String city;
-
-	@Column(name = "state")
-	private String state;
-
-	@Column(name = "zip")
-	private Integer zip;
-
+	
 }

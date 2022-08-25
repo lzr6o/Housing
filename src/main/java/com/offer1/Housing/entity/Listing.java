@@ -20,7 +20,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "home")
-public class Home {
+public class Listing {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -33,7 +33,7 @@ public class Home {
 	
 	@Column(name = "state")
 	@Enumerated(EnumType.STRING)
-	private HomeState homeState;
+	private ListingState listingState;
 	
 	
 }
