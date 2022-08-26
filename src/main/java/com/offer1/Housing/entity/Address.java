@@ -24,6 +24,9 @@ public class Address {
 	@OneToOne(mappedBy = "address")
     private Property property;
 	
+	@OneToOne(mappedBy = "address")
+    private Company company;
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

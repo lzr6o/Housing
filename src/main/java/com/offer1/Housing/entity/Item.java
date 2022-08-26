@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,15 +17,20 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "primary_owner")
-public class PrimaryOwner {
+@Table(name = "item")
+public class Item {
 
-	@OneToOne(mappedBy = "primaryOwner")
-    private Property property;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private Long id;
+	
+	@Column(name = "name")
+	private String name;
+	
+	@Column(name = "listing")
+	private String listing;
 	
 }

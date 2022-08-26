@@ -1,11 +1,15 @@
 package com.offer1.Housing.entity;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -18,11 +22,16 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "primary_owner")
-public class PrimaryOwner {
+@Table(name = "excluded_items")
+public class ExcludedItems {
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = "excluded_items_id", referencedColumnName = "id")
+	private List<Item> items;
 
-	@OneToOne(mappedBy = "primaryOwner")
-    private Property property;
+	public void addItem(Item item) {
+		this.items.add(item);
+	}
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
