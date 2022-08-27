@@ -21,7 +21,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "listing_agent")
 public class ListingAgent {
-
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")

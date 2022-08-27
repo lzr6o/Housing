@@ -22,7 +22,7 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "property")
 public class Property {
-
+	
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id", referencedColumnName = "id")
     private Address address;
@@ -30,10 +30,6 @@ public class Property {
 	@OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "primary_owner_id", referencedColumnName = "id")
     private PrimaryOwner primaryOwner;
-	
-	@OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

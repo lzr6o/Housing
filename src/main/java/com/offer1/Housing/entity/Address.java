@@ -5,7 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -20,12 +19,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "address")
 public class Address {
-
-	@OneToOne(mappedBy = "address")
-    private Property property;
-	
-	@OneToOne(mappedBy = "address")
-    private Company company;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

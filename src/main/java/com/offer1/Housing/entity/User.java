@@ -7,7 +7,6 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -22,9 +21,6 @@ import lombok.Setter;
 @AllArgsConstructor
 @Table(name = "user")
 public class User {
-
-	@OneToOne(mappedBy = "user")
-	private Property property;
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -46,6 +42,5 @@ public class User {
 	@Column(name = "status")
 	@Enumerated(EnumType.STRING)
 	private UserStatus userStatus;
-	
 	
 }
