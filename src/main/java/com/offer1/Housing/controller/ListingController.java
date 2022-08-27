@@ -4,13 +4,14 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.offer1.Housing.common.ApiRestResponse;
+import com.offer1.Housing.entity.Listing;
 import com.offer1.Housing.entity.Property;
 import com.offer1.Housing.exception.HousingException;
 import com.offer1.Housing.exception.HousingExceptionEnum;
@@ -44,10 +45,23 @@ public class ListingController {
 	}
 
 	@PostMapping("/createNewListing")
-	public ApiRestResponse createNewListing() throws HousingException {
+	public ApiRestResponse createNewListing(@RequestParam(value = "price") Double price,
+			@RequestParam(value = "state") String state, @RequestBody Property property) throws HousingException {
+		Listing listing = listingService.createNewListing(price, state, property);
+		if (listing == null) {
+			return ApiRestResponse.error(HousingExceptionEnum.LISTING_CREATED_FAILED);
+		}
+		return ApiRestResponse.success(listing);
+	}
+
+	@PostMapping("/createNewOffer/")
+	public ApiRestResponse createNewOffer() throws HousingException {
 		
 	}
-	
-	
+
+	@GetMapping("/getAllOffers/")
+	public ApiRestResponse getAllOffers() throws HousingException {
+		
+	}
 	
 }

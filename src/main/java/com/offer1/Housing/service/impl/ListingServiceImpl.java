@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.offer1.Housing.entity.Address;
 import com.offer1.Housing.entity.Listing;
+import com.offer1.Housing.entity.ListingState;
 import com.offer1.Housing.entity.Property;
 import com.offer1.Housing.exception.HousingException;
 import com.offer1.Housing.exception.HousingExceptionEnum;
@@ -57,5 +58,15 @@ public class ListingServiceImpl implements ListingService {
 		return properties;
 	}
 	
+	@Override
+	public Listing createNewListing(Double price, String state, Property property) {
+		ListingState listingState = ListingState.valueOf(state);
+		Listing listing = new Listing(price, listingState, property);
+		listingRepository.save(listing);
+		return listing;
+	}
+
+	@Override
+	public 
 	
 }

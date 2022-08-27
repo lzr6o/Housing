@@ -63,4 +63,10 @@ public class Listing {
 	@Enumerated(EnumType.STRING)
 	private ListingState listingState;
 
+	public Listing(double price, ListingState listingState, Property property) {
+		this.price = price;
+		this.listingState = listingState;
+		this.property = property;
+	}
+	
 }
