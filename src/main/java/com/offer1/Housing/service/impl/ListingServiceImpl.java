@@ -1,5 +1,6 @@
 package com.offer1.Housing.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +18,44 @@ import com.offer1.Housing.service.ListingService;
 
 @Service
 public class ListingServiceImpl implements ListingService {
-	
+
 	@Autowired
 	ListingRepository listingRepository;
-	
+
 	@Autowired
 	PropertyRepository propertyRepository;
-	
+
 	@Autowired
 	AddressRepository addressRepository;
-	
+
 	@Override
 	public List<Property> searchHomes(String city, Double price, Integer numberBedrooms) {
-		List<Listing> listings = listingRepository.findByPrice(price);
+		List<Listing> listings = new ArrayList<>();
+		listings = price != null ? listingRepository.findByPrice(price) : listingRepository.findAll();
 		if (listings == null) {
 			throw new HousingException(HousingExceptionEnum.LISTING_NOT_FOUND);
 		}
-		List<Property> properties = new ArraryList<>();
+		List<Property> properties = new ArrayList<>();
 		for (Listing listing : listings) {
 			Property property = listing.getProperty();
-			if (property.getNumberBedrooms() == numberBedrooms) {
+			if (numberBedrooms == null || property.getNumberBedrooms() == numberBedrooms) {
 				Address address = property.getAddress();
-				if (address.getCity().equals(city)) {
+				if (city.length() == 0 || address.getCity().equals(city)) {
 					properties.add(property);
 				}
 			}
 		}
 		return properties;
 	}
+
+	@Override
+	public List<Property> getAllHomes() {
+		List<Property> properties = propertyRepository.findAll();
+		if (properties == null) {
+			throw new HousingException(HousingExceptionEnum.HOME_NOT_FOUND);
+		}
+		return properties;
+	}
+	
 	
 }

@@ -8,4 +8,6 @@ public interface ListingService {
 
 	List<Property> searchHomes(String city, Double price, Integer numberBedrooms);
 
+	List<Property> getAllHomes();
+
 }
