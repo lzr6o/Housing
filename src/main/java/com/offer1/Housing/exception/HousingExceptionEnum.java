@@ -1,8 +1,9 @@
 package com.offer1.Housing.exception;
 
 public enum HousingExceptionEnum {
-
-	REGISTER_FAILED(100, "register failed");
+	
+	LISTING_NOT_FOUND(100, "no listing found"),
+	HOME_NOT_FOUND(101, "no home found");
 
 	Integer code;
 	String msg;
