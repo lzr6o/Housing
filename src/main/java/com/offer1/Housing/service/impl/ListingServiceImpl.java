@@ -2,6 +2,7 @@ package com.offer1.Housing.service.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -57,16 +58,27 @@ public class ListingServiceImpl implements ListingService {
 		}
 		return properties;
 	}
-	
+
 	@Override
-	public Listing createNewListing(Double price, String state, Property property) {
-		ListingState listingState = ListingState.valueOf(state);
-		Listing listing = new Listing(price, listingState, property);
-		listingRepository.save(listing);
-		return listing;
+	public Property createNewListing(Property property) {
+		propertyRepository.save(property);
+		return property;
 	}
 
 	@Override
-	public 
-	
+	public Listing createNewOffer(Double price, String state, Long propertyID) {
+		ListingState listingState = ListingState.valueOf(state);
+		Optional<Property> optionalProperty = propertyRepository.findById(propertyID);
+		Property property = optionalProperty.orElseThrow(() -> new HousingException(HousingExceptionEnum.PROPERTY_NOT_FOUND));
+		Listing offer = new Listing(price, listingState, property);
+		listingRepository.save(offer);
+		return offer;
+	}
+
+	@Override
+	public List<Listing> getAllOffers(Long propertyID) {
+		List<Listing> offers = listingRepository.findByPropertyId(propertyID);
+		return offers;
+	}
+
 }

@@ -11,8 +11,10 @@ public interface ListingService {
 
 	List<Property> getAllHomes();
 
-	Listing createNewListing(Double price, String state, Property property);
+	Property createNewListing(Property property);
 
-	
+	Listing createNewOffer(Double price, String state, Long propertyID);
+
+	List<Listing> getAllOffers(Long propertyID);
 	
 }

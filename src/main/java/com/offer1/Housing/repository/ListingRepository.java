@@ -12,4 +12,6 @@ public interface ListingRepository extends JpaRepository<Listing, Long> {
 
 	List<Listing> findByPrice(Double price);
 	
+	List<Listing> findByPropertyId(Long propertyID);
+	
 }

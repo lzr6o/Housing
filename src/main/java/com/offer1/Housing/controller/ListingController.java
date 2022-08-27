@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,23 +46,31 @@ public class ListingController {
 	}
 
 	@PostMapping("/createNewListing")
-	public ApiRestResponse createNewListing(@RequestParam(value = "price") Double price,
-			@RequestParam(value = "state") String state, @RequestBody Property property) throws HousingException {
-		Listing listing = listingService.createNewListing(price, state, property);
-		if (listing == null) {
+	public ApiRestResponse createNewListing(@RequestBody Property home) throws HousingException {
+		Property property = listingService.createNewListing(home);
+		if (property == null) {
 			return ApiRestResponse.error(HousingExceptionEnum.LISTING_CREATED_FAILED);
 		}
-		return ApiRestResponse.success(listing);
+		return ApiRestResponse.success(property);
 	}
 
-	@PostMapping("/createNewOffer/")
-	public ApiRestResponse createNewOffer() throws HousingException {
-		
+	@PostMapping("/createNewOffer")
+	public ApiRestResponse createNewOffer(@RequestParam(value = "price") Double price,
+			@RequestParam(value = "state") String state, @RequestParam(value = "propertyID") Long propertyID) throws HousingException {
+		Listing offer = listingService.createNewOffer(price, state, propertyID);
+		if (offer == null) {
+			return ApiRestResponse.error(HousingExceptionEnum.OFFER_CREATED_FAILED);
+		}
+		return ApiRestResponse.success(offer);
 	}
 
-	@GetMapping("/getAllOffers/")
-	public ApiRestResponse getAllOffers() throws HousingException {
-		
+	@GetMapping("/getAllOffers/{homeID}")
+	public ApiRestResponse getAllOffers(@PathVariable Long homeID) throws HousingException {
+		List<Listing> offers = listingService.getAllOffers(homeID);
+		if (offers.size() == 0) {
+			return ApiRestResponse.error(HousingExceptionEnum.OFFER_NOT_FOUND);
+		}
+		return ApiRestResponse.success(offers);
 	}
 	
 }
