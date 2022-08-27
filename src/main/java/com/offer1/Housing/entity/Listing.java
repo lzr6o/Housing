@@ -30,6 +30,14 @@ public class Listing {
 	private Property property;
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "escrow_company_id", referencedColumnName = "id")
+	private EscrowCompany escrowCompany;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "title_company_id", referencedColumnName = "id")
+	private TitleCompany titleCompany;
+	
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "listing_agent_id", referencedColumnName = "id")
 	private ListingAgent listingAgent;
 
