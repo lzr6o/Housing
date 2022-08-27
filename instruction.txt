@@ -1,0 +1,19 @@
+https://drive.google.com/file/d/1o111O8LsfrRZIDuc8jDPhIS_gYE5JhyS/view
+
+
+Thank you so much again for giving me this interview chance!
+
+Below are a few bit instructions about how to run my program.
+
+You can run my program on eclipse or best (SpringToolSuit ^.^)
+
+I used MySQL as my database, I have included a data.sql file in my project, you could just run the script and get all the test data imported!
+
+For all the API calls I have also attached some Postman screenshots of the results I got!
+
+Hope you enjoy my program and if you have any questions for me, just call me at 212-3210453 or send me an email at zr6oli@gmail.com
+
+I really hope I can join the team and contribute more to the code HAHA ^.^
+
+Best Regards
+Zhengrui Li
